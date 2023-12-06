@@ -1,0 +1,39 @@
+﻿<Window x:Class="DataBinding_Mode.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DataBinding_Mode"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <!--<StackPanel>
+        --><!--Source--><!--
+        <TextBox Name="txt1" Margin="24" />
+        
+        --><!--Target-->
+        <!--ElementName=txt1 대신 Source={x:Reference txt1} 가능--><!--
+        <Label HorizontalAlignment="Center" BorderBrush="Black" BorderThickness="2"
+               Content="{Binding ElementName=txt1, Path=Text}"/>
+        <Label HorizontalAlignment="Center" BorderBrush="Black" BorderThickness="2">
+            <Label.Content>
+                <Binding ElementName="txt1" Path="Text" />
+            </Label.Content>
+        </Label>
+        <Label Name="label" HorizontalAlignment="Center" BorderBrush="Black" BorderThickness="2" />
+
+    </StackPanel>-->
+    
+    
+    <StackPanel>
+        <!--Binding Target-->
+        <!--UpdateSourceTrigger는 카겟이 소스를 갱신하는 타이밍을 지정-->
+        <!--TextBox의 경우 LostFocus가 기본이므로 값이 바뀔대마다 갱신하기 위해 PropertyChanged-->
+        <TextBox Margin="24"
+                 Text="{Binding ElementName=label,Path=Content,
+            UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}" />
+        
+        <!--Binding Source-->
+        <Label Name="label" Content="대한민국"
+               HorizontalAlignment="Center" BorderBrush="Black" BorderThickness="2"/>
+    </StackPanel>
+</Window>
